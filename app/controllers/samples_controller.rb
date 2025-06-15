@@ -1,4 +1,4 @@
-class MainsController < ApplicationController
+class SamplesController < ApplicationController
 
   def index
     @foods = Food.all
@@ -9,7 +9,7 @@ class MainsController < ApplicationController
     @food = Food.new(food_params)
 
     if @food.save
-      redirect_to mains_path
+      redirect_to samples_path
     else
       render :index, status; ;unprocessable_entity
     end

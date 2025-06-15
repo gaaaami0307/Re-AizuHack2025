@@ -8,5 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Food.create(name:"potato", price:300)
 Food.create(name:"carrot", price:300)
 Food.create(name:"sushi", price:800)
