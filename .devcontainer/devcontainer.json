@@ -12,8 +12,5 @@
       ]
     }
   },
-  "postCreateCommand": "bundle install && yarn install && bin/rails db:prepare",
-  "mounts": [
-  "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-  ]
+  "postCreateCommand": "bundle install && yarn install && bin/rails db:prepare"
 }
