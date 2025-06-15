@@ -1,0 +1,29 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./infra/db/Dockerfile
+    environment:
+      MYSQL_DATABASE: app_test
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3306:3306"
+    command: --require_secure_transport=OFF
+  web:
+    build:
+      context: .
+      dockerfile: ./infra/web/Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    links:
+      - db
+
+volumes:
+  rails-railway-stations-volume:
+  bundle:
