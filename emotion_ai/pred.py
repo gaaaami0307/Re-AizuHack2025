@@ -1,6 +1,7 @@
 import json
 import os
 
+import numpy as np
 import pandas as pd
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -47,7 +48,7 @@ for time in finetuned_time:
     output_val = {text: None for text in test_texts["text"]}
     for model_dir in finetuned_models:
         model_path = os.path.join(
-                os.path.dirname(__file__) + "/{time}_time/{model_dir}"
+                os.path.dirname(__file__) + f"/{time}_time/{model_dir}"
             )
 
         tokenizer = AutoTokenizer.\
@@ -80,10 +81,16 @@ with pd.ExcelWriter("output.xlsx") as writer:
         rows = []
         for text in test_texts["text"]:
             logits = output_val[text]
+            logits_list = np.array(output_val[text])
             pred_idx = logits.index(max(logits))
             pred_label = categories[pred_idx]
+            logits_tensor = torch.tensor(logits_list, dtype=torch.float)
+            softmax_tensor = torch.softmax(logits_tensor, dim=0)
+            softmax_probabilities_list = softmax_tensor.tolist()
+
             rows.append({"text": text,
                          "pred_label": pred_label,
-                         "logits: negative, neutral, positive": logits})
+                         "logits: negative, neutral, positive":
+                             softmax_probabilities_list})
         df_out = pd.DataFrame(rows)
         df_out.to_excel(writer, sheet_name=time, index=False)
