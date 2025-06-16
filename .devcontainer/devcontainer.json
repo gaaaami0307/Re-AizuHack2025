@@ -12,5 +12,12 @@
       ]
     }
   },
-  "postCreateCommand": "bundle install && yarn install && bin/rails db:prepare"
+  "postCreateCommand": "bundle install && yarn install && bin/rails db:prepare",
+  "mounts": [
+  "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "runArgs": ["--add-host=host.docker.internal:host-gateway"],
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  }
 }
