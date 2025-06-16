@@ -12,8 +12,5 @@
       ]
     }
   },
-  "postCreateCommand": "bundle install && yarn install && bin/rails db:prepare",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:1": {}
-  }
+  "postCreateCommand": "bundle install && yarn install && bin/rails db:prepare"
 }
