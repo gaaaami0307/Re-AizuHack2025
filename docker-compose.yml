@@ -25,5 +25,4 @@ services:
       - db
 
 volumes:
-  rails-railway-stations-volume:
   bundle:
