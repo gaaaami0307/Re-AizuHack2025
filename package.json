@@ -1,0 +1,12 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": {
+    "@techtrain/cli-railway": "^0.2.3"
+  },
+  "scripts": {
+    "login:techtrain": "techtrain-railway login",
+    "postinstall": "yarn login:techtrain"
+  }
+}

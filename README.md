@@ -1,4 +1,3 @@
-# Re-AizuHack2025
 Repository for Re:AizuHack2025
 
 Team GA Unite
@@ -13,5 +12,4 @@ Please make branch like below:
 
 ・fix (branch for fix something)
 
-example:
-"develop/gaaaami0307"
+example: "develop/gaaaami0307"

@@ -1,0 +1,14 @@
+{
+  "name": "app",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rebornix.Ruby",
+        "wingrunr21.vscode-ruby"
+      ]
+    }
+  },
+  "forwardPorts": [3000],
+  "postCreateCommand": "sudo service mysql start && bundle install && yarn install"
+}
