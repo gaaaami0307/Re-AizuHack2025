@@ -1,16 +1,30 @@
 {
   "name": "app",
-  "dockerComposeFile": "../docker-compose.yml",
-  "service": "web",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  "forwardPorts": [3000],
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/ruby:1": {
+      "version": "3.3"
+    },
+    "ghcr.io/devcontainers/features/mysql:1": {
+      "version": "8.0",
+      "mysqlDatabase": "app_test",
+      "mysqlUser": "user",
+      "mysqlPassword": "user",
+      "mysqlRootPassword": "password"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/yarn:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
         "rebornix.Ruby",
-        "ms-azuretools.vscode-docker"
+        "wingrunr21.vscode-ruby"
       ]
     }
   },
+  "forwardPorts": [3000],
   "postCreateCommand": "bundle install && yarn install"
 }
