@@ -7,10 +7,14 @@ import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 
-def main():
+def main(path="test.csv"):
+    """
+    Args:
+        path (str): dataの中にある使いたいファイルを指定. Defaults to "test.csv".
+    """
     # dataディレクトリのpath
     data_dir = os.path.join(
-            os.path.dirname(__file__), "data"
+            os.path.dirname(__file__), path
         )
 
     # label_categoriesへのpath
@@ -41,7 +45,7 @@ def main():
         "fourth"
     ]
 
-    test_texts = pd.read_csv(data_dir + "/test.csv",
+    test_texts = pd.read_csv(data_dir + "/" + path,
                              dtype=pd.StringDtype())
 
     all_pred = []
