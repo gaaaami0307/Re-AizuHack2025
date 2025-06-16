@@ -12,5 +12,5 @@
       ]
     }
   },
-  "postCreateCommand": "bundle install && yarn install && bin/rails db:prepare"
+  "postCreateCommand": "bundle install && yarn install"
 }
