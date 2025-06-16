@@ -91,11 +91,13 @@ def main(path="test.csv"):
                 logits_tensor = torch.tensor(logits_list, dtype=torch.float)
                 softmax_tensor = torch.softmax(logits_tensor, dim=0)
                 softmax_probabilities_list = softmax_tensor.tolist()
+                softmax_probabilities_list = softmax_tensor.tolist()
 
                 rows.append({"text": text,
                              "pred_label": pred_label,
-                             "logits: negative, neutral, positive":
-                                 softmax_probabilities_list})
+                             "negative": softmax_probabilities_list[0],
+                             "neutral": softmax_probabilities_list[1],
+                             "positive": softmax_probabilities_list[2]})
             df_out = pd.DataFrame(rows)
             df_out.to_excel(writer, sheet_name=time, index=False)
 
