@@ -14,7 +14,7 @@ def main(path="test.csv"):
     """
     # dataディレクトリのpath
     data_dir = os.path.join(
-            os.path.dirname(__file__), path
+            os.path.dirname(__file__), "data"
         )
 
     # label_categoriesへのpath
