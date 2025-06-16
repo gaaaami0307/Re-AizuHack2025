@@ -6,9 +6,8 @@ from datasets import Dataset
 from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
                           Trainer, TrainingArguments)
 
-df = pd.read_excel(r"D:\program\programming\app\emotion_ai\data"
-                   r"\emotion_dataset_10000.xlsx",
-                   header=None, names=["text", "label"])
+train_dir = os.path.join(os.path.dirname(__file__), "data/train.xlsx")
+df = pd.read_excel(train_dir, header=None, names=["text", "label"])
 
 
 df["label"] = df["label"].astype("category")
