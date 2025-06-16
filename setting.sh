@@ -33,10 +33,17 @@ if ! rbenv versions | grep -q $RUBY_VERSION; then
 fi
 
 rbenv global $RUBY_VERSION
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - bash)"
+source ~/.bashrc
+
+rbenv rehash
+
 # rails インストール
-sudo gem install rails
+gem install rails
 # bundler インストール
-sudo gem install bundler
+gem install bundler
 rbenv rehash
 
 # bundle install
@@ -51,3 +58,5 @@ echo "sudo mysql"
 echo "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
 echo "FLUSH PRIVILEGES;"
 echo "EXIT;"
+
+echo "その後、\"新しい\"ターミナルにて、./start.shを実行してください。"
