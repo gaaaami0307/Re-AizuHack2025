@@ -1,8 +1,15 @@
-# Re-AizuHack2025
 Repository for Re:AizuHack2025
 
 Team GA Unite
 
-Test commit
+Please make branch like below:
 
-You need DB setup:"bin/rails db:prepare"
+"flow"/"Username"
+
+"flow":
+
+・develop (branch for develop each field)
+
+・fix (branch for fix something)
+
+example: "develop/gaaaami0307"

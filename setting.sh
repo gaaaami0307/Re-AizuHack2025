@@ -36,7 +36,6 @@ rbenv global $RUBY_VERSION
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - bash)"
-source ~/.bashrc
 
 rbenv rehash
 
@@ -58,5 +57,7 @@ echo "sudo mysql"
 echo "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
 echo "FLUSH PRIVILEGES;"
 echo "EXIT;"
+echo " "
+echo " "
 
 echo "その後、\"新しい\"ターミナルにて、./start.shを実行してください。"
