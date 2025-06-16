@@ -4,20 +4,50 @@ set -e  # エラーがあったらそこで止まる
 
 echo "依存関係インストール"
 sudo apt update
-sudo apt install ruby-full
-sudo apt install mysql-server
+sudo apt install -y git build-essential libssl-dev libreadline-dev zlib1g-dev \
+    mysql-server default-libmysqlclient-dev libyaml-dev
+
+# rbenv インストール
+if [ ! -d "$HOME/.rbenv" ]; then
+  echo "rbenv をインストールします"
+  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+  cd ~/.rbenv && src/configure && make -C src
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+  echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init - bash)"
+
+  # ruby-build インストール
+  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+fi
+
+# bashrc 反映（新規ターミナルでも使えるように）
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - bash)"
+
+# Ruby インストール（必要に応じてバージョンを変更）
+RUBY_VERSION=3.2.3
+if ! rbenv versions | grep -q $RUBY_VERSION; then
+  echo "Ruby $RUBY_VERSION をインストールします"
+  rbenv install $RUBY_VERSION
+fi
+
+rbenv global $RUBY_VERSION
+# rails インストール
+sudo gem install rails
+# bundler インストール
 sudo gem install bundler
-sudo apt-get update
-sudo apt-get install -y default-libmysqlclient-dev build-essential
-sudo apt-get install -y libyaml-dev
+rbenv rehash
 
-
-sudo bundle install
-#yarn install
+# bundle install
+bundle install
 
 echo "データベース作成"
 sudo service mysql start
-rails db:create
-rails db:migrate
 
-echo "完了"
+
+echo "以下を行ってください。"
+echo "sudo mysql"
+echo "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
+echo "FLUSH PRIVILEGES;"
+echo "EXIT;"
