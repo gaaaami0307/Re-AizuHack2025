@@ -1,15 +1,6 @@
 {
   "name": "app",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "features": {
-    "ghcr.io/devcontainers/features/ruby:1": {
-      "version": "3.3"
-    },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "lts"
-    },
-    "ghcr.io/devcontainers/features/yarn:1": {}
-  },
   "customizations": {
     "vscode": {
       "extensions": [
