@@ -1,0 +1,70 @@
+body {
+  background: linear-gradient(to right, #2d3236, #395f7c);
+  margin: 0;
+  padding: 0;
+  font-family: Meiryo, sans-serif;
+}
+
+/*-----List-----*/
+.List {
+  background-color: #466f91;
+  border-radius: 1rem;
+  width: 90%;/*windowサイズ極小の際にBGを残せる*/
+  max-width: 60rem;/*ここでList背景の横幅調整*/
+  margin: 1.5rem auto;
+  padding: 0.5rem 1.5rem;
+  position: relative;/*List親*/
+  z-index: 500;
+}
+
+/* -----common form style----- */
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* -----入力欄----- */
+form input[type="text"] {
+  flex: 1;/*padding,marginを考慮しListに限界まで広げる*/
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #3b3d41;
+  color: white;
+}
+
+/* ボタン */
+form button[type="submit"] {
+  font-size: 1.5rem;
+  background-color: #3b3d41;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;/*背景0.3s,拡大0.2s*/
+}
+
+form button[type="submit"]:hover {
+  background-color: gray;
+  transform: scale(1.1);
+}
+
+/*-----List Text-----*/
+#Todo {
+  font-size: clamp(1rem, 2vw, 2rem);
+  color: white;
+  margin-left: 0.5rem;
+}
+
+#today {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  color: white;
+  margin-left: 1rem;
+  margin-top: -1.5rem;
+}

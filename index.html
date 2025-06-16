@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List(仮)</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>  
+</head>
+
+<body>
+  <div class="List">
+    <div class="List-txt">
+      <p id="Todo">今日の予定</p>
+      <p id="today"></p>
+    </div>
+    <form id="task-form">
+      <input type="text" placeholder="やりたいことは？" required>
+      <button type="submit">+</button>
+    </form>
+
+    <form id="condition-form">
+      <input type="text" placeholder="今の気分は？" required>
+      <button type="submit">+</button>
+    </form>
+  </div>
+</body>
+</html>
