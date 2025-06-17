@@ -43,7 +43,7 @@ for model_name in config.MODELS_LIST:
         output_dir = f'./results_{model_name.replace("/", "_")}',  # noqa
         num_train_epochs = 6,  # type: ignore  # noqa
         per_device_train_batch_size = 8,  # type: ignore  # noqa
-        save_strategy = "epoch",  # noqa
+        save_strategy = "no",  # noqa
         logging_steps = 500,  # type: ignore  # noqa
         warmup_ratio = 0.1,  # type: ignore  # noqa
         learning_rate = 1e-5,  # type: ignore  # noqa
