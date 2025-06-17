@@ -1,7 +1,7 @@
 import os
 
 # Re-AizuHack2025へのpath
-EMOTION_AI_PATH = os.path.dirname(os.path.abspath(__file__))
+EMOTION_AI_PATH = os.path.dirname(__file__)
 
 
 # dataディレクトリへのpath
@@ -9,7 +9,7 @@ DATA_PATH = os.path.join(EMOTION_AI_PATH, "data")
 
 
 # finetunedディレクトリへのpath
-FINETRAIN_PATH = os.path.join(DATA_PATH, "finetrain")
+FINETRAIN_PATH = os.path.join(DATA_PATH, "fine_tuned")
 
 
 # 学習用データのpath
