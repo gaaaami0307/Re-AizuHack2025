@@ -18,6 +18,7 @@ categories = list(df["label"].cat.categories)
 config.check_data_dir()
 
 
+#  label列のpositive, neutral, negativeを対応する整数コードに変換する
 df["label"] = df["label"].cat.codes
 dataset = Dataset.from_pandas(df[["text", "label"]])
 
