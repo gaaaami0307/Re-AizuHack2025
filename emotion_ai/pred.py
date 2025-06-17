@@ -45,7 +45,6 @@ def main(path="test.csv"):
                     [a + b for a, b in zip(output_val[text], logits)]
 
     all_pred.append(output_val)
-    print(all_pred[0])
 
     for output_val in all_pred:
         # 各テキストごとに合計logitsから予測ラベルを決定
