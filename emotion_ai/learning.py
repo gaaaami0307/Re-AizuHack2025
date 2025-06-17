@@ -11,8 +11,7 @@ df = pd.read_excel(config.TRAIN_DATA_PATH,
 
 
 df["label"] = df["label"].astype("category")
-num_labels = len(df["label"].cat.categories)
-categories = list(df["label"].cat.categories)
+num_labels = len(config.DEFAULT_CATEGORY)
 
 # dataディレクトリがなければ作る
 config.check_data_dir()
@@ -25,7 +24,7 @@ dataset = Dataset.from_pandas(df[["text", "label"]])
 
 for model_name in config.MODELS_LIST:
     print(f"\n---------Fine Tuning: {model_name}----------")
-    # モデルに適した前処理をしてくれるもの
+    # AutoTokenizerで前処理を行う
     tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     def preprocess(example):
@@ -34,12 +33,14 @@ for model_name in config.MODELS_LIST:
                          padding="longest"
                          )
 
+    # mapでそれぞれのdatasetにpreprocessを適応させる
     tokenized_dataset = dataset.map(preprocess)
 
     # これは自動で分類用のヘッドをつけてくれる
     model = AutoModelForSequenceClassification.\
         from_pretrained(model_name, num_labels=num_labels)
 
+    # ハイパーパラメータの設定
     training_args = TrainingArguments(
         output_dir = f'./results_{model_name.replace("/", "_")}',  # noqa
         num_train_epochs = 6,  # type: ignore  # noqa
@@ -59,6 +60,8 @@ for model_name in config.MODELS_LIST:
     )
 
     trainer.train()  # type: ignore
+
+    # modelの保存
     model.save_pretrained(
         os.path.join(config.DATA_PATH, "fine_tuned",
                      model_name.replace("/", "_")[:6])
