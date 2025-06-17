@@ -35,10 +35,6 @@ FINETRAIN_MODEL_LIST = [
 DEFAULT_CATEGORY = ["negative", "neutral", "positive"]
 
 
-# 実際に感情を分析するファイルのpath
-TEST_DATA_PATH = os.path.join(DATA_PATH, "test.csv")
-
-
 # dataディレクトリがなければ作成する
 def check_data_dir():
     os.makedirs(DATA_PATH, exist_ok=True)
