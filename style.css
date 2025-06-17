@@ -65,6 +65,14 @@ form button[type="submit"]:hover {
   transform: scale(1.1);
 }
 
+#next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* 中央寄せ */
+}
+
+
 /*-----List Text-----*/
 .List-text {
   display: flex;
@@ -81,4 +89,45 @@ form button[type="submit"]:hover {
   font-size: clamp(0.8rem, 1.3vw, 1rem);
   color: white;
   margin-left: 0.4rem;
+}
+
+/*-----List Item-----*/
+#task-list {
+  list-style: none;
+  padding-left: 0;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+#task-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.delete-btn {
+  margin-left: 1rem;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 0.3rem;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000;
+}
+
+
+/*-----Task Text Toggle-----*/
+.task-text { /*avctive時(初期)*/
+  cursor: pointer;
+}
+
+.task-text.done {
+  text-decoration: line-through;
+  color: #aaa;
 }

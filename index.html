@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List(仮)</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>  
+  <script src="date.js" defer></script>
+  <script src="li.js" defer></script>  
 </head>
 
 <body>
@@ -13,15 +14,14 @@
     <div class="List-text">
       <p id="Todo">今日の予定</p>
       <p id="today"></p>
+      <ul id="task-list"></ul>
     </div>
     <div>
       <form id="task-form">
         <input type="text" placeholder="やりたいことは？" required>
-        <button type="submit">+</button>
       </form>
-      <form id="condition-form">
-        <input type="text" placeholder="今の気分は？" required>
-        <button type="submit">+</button>
+      <form id="next">
+        <button type="submit" id="next-button">感情入力フォームへ進む</button>
       </form>
     </div>
   </div>
