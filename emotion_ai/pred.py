@@ -66,7 +66,7 @@ def main(path="test.csv"):
         df_out = pd.DataFrame(rows)
 
         # CSVファイルとして出力する
-        output_path = config.DATA_PATH + "output.csv"
+        output_path = os.path.join(config.DATA_PATH, "output", "output.csv")
         df_out.to_csv(output_path, index=False, encoding="utf-8")
 
 
