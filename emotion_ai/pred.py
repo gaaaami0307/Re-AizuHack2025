@@ -12,14 +12,14 @@ def main(path="test.csv"):
         path (str): dataの中にある使いたいファイルを指定. Defaults to "test.csv".
     """
 
-    # label_categories
-
     test_texts = pd.read_csv(os.path.join(config.DATA_PATH, path),
                              dtype=pd.StringDtype())
 
     all_pred = []
     output_val = {text: None for text in test_texts["text"]}
+
     for model_dir in config.FINETRAIN_MODEL_LIST:
+
         model_path = \
             os.path.join(config.FINETRAIN_PATH, model_dir)
 
@@ -43,6 +43,7 @@ def main(path="test.csv"):
                 # 要素ごとに加算
                 output_val[text] = \
                     [a + b for a, b in zip(output_val[text], logits)]
+
     all_pred.append(output_val)
     print(all_pred[0])
 
@@ -54,6 +55,7 @@ def main(path="test.csv"):
             pred_idx = logits.index(max(logits))
             pred_label = config.DEFAULT_CATEGORY[pred_idx]
             logits_tensor = torch.tensor(logits, dtype=torch.float)
+
             # softmaxを適応させて出力の合計値を1にする
             softmax_tensor = torch.softmax(logits_tensor, dim=0)
             softmax_probabilities_list = softmax_tensor.tolist()

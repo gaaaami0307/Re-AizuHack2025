@@ -31,6 +31,7 @@ FINETRAIN_MODEL_LIST = [
     "lxyuan"
 ]
 
+
 # デフォルトのカテゴリー
 DEFAULT_CATEGORY = ["negative", "neutral", "positive"]
 
