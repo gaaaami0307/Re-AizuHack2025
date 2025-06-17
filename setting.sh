@@ -47,6 +47,8 @@ rbenv rehash
 
 # bundle install
 bundle install
+echo "python requirements pip install"
+pip install --user -r requirements.txt
 
 echo "データベース作成"
 sudo service mysql start
