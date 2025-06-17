@@ -1,3 +1,5 @@
+import os
+
 import config
 import pandas as pd
 from datasets import Dataset
@@ -57,16 +59,16 @@ for model_name in config.MODELS_LIST:
 
     trainer.train()  # type: ignore
     model.save_pretrained(
-        config.DATA_PATH +
-        f'/{model_name.replace("/", "_")[:6]}'
+        os.path.join(config.DATA_PATH, "fine_tuned",
+                     model_name.replace("/", "_")[:6])
     )
 
     tokenizer.save_pretrained(
-        config.DATA_PATH +
-        f'/{model_name.replace("/", "_")[:6]}'
+        os.path.join(config.DATA_PATH, "fine_tuned",
+                     model_name.replace("/", "_")[:6])
     )
 
     print(
-        "Saved:" + config.DATA_PATH +
+        "Saved:" + config.DATA_PATH + "/fine_tuned"
         f"/{model_name.replace("/", "_")[:6]}"
     )
