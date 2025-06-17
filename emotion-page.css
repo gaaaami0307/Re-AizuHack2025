@@ -1,0 +1,23 @@
+html {
+  height: 100%;
+  width: 100%
+}
+
+body {
+  background: linear-gradient(to right, #2d3236, #395f7c);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.All {
+  background-color: #466f91;
+  border-radius: 1rem;
+  height: 95%;
+  width: 90%;
+  max-width: 60rem;
+  margin: 1.0rem auto;
+  padding: 0.5rem 1.5rem;
+  position: relative;/*List親*/
+  z-index: 500;
+}
