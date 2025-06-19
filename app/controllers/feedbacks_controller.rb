@@ -1,15 +1,16 @@
 class FeedbacksController < ApplicationController
 
   def index
-    @feedback = FeedBack.new
+    @feed_back = FeedBack.new
     @ep = Plan.find_by(date:Date.today).ep
   end
 
   def create
-    @feedback = FeedBack.new(feedback_params)
+    @feed_back = FeedBack.new(feed_back_params)
 
-    if !@feedback.save
+    if !@feed_back.save
       render :index, notice: "フィードバックの保存に失敗しました。"
+      return
     end
 
     #終了判定(TOPページ処理用)
@@ -24,33 +25,33 @@ class FeedbacksController < ApplicationController
 
   private
 
-  def feedback_params
-    params.require(:feedback).permit(:date, :ep, :tf, :con, :mtv)
+  def feed_back_params
+    params.require(:feed_back).permit(:date, :ep, :tf, :con, :mtv)
   end
 
   def tuning_parameter
-    feedback = FeedBack.find_by(date:Date.today)
+    feed_back = FeedBack.find_by(date:Date.today)
     ep = Plan.find_by(date:Date.today).ep
     tuning = Tuning.find_by(ep:ep)
 
-    T = tuning.T
-    M = tuning.M
-    C = tuning.C
+    t = tuning.T
+    m = tuning.M
+    c = tuning.C
 
     #シグモイド関数でチューニング
-    T += sigmoid(feedback.tf)
-    M += sigmoid(feedback.con)
-    C += sigmoid(feedback.mtv)
+    t += sigmoid(feed_back.tf)
+    m += sigmoid(feed_back.con)
+    c += sigmoid(feed_back.mtv)
 
     #0.1~0.9の範囲に抑えるように
-    T = [T, 0.1].max
-    T = [T, 0.9].min
-    M = [M, 0.1].max
-    M = [M, 0.9].min
-    C = [C, 0.1].max
-    C = [C, 0.9].min
+    t = [t, 0.1].max
+    t = [t, 0.9].min
+    m = [m, 0.1].max
+    m = [m, 0.9].min
+    c = [c, 0.1].max
+    c = [c, 0.9].min
 
-    tuning.update(T:T, M:M, C:C)
+    tuning.update(T:t, M:m, C:c)
   end
 
   def sigmoid(x)

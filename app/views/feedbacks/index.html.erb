@@ -6,7 +6,7 @@
 <br>
 <br>
 
-<%= form_with(model: @feedback, url: feedbacks_path, method: :post) do |f| %>
+<%= form_with(model: @feed_back, url: feed_backs_path, method: :post) do |f| %>
 
   <div>
     <%= f.hidden_field :date, value: Date.today %>
@@ -35,7 +35,7 @@
   </div>
 
   <div>
-    <%= f.submit "タスクを始める" %>
+    <%= f.submit "フィードバックを送信する" %>
   </div>
 <% end %>
 
@@ -57,9 +57,15 @@
     v3.textContent = s3.value;
 
     // スライダー変更時にリアルタイム更新
-    slider.addEventListener("input", function() {
+    s1.addEventListener("input", function() {
       v1.textContent = s1.value;
+    });
+
+    s2.addEventListener("input", function() {
       v2.textContent = s2.value;
+    });
+
+    s3.addEventListener("input", function() {
       v3.textContent = s3.value;
     });
   });
