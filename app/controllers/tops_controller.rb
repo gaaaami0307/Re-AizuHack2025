@@ -1,7 +1,8 @@
 class TopsController < ApplicationController
 
   def index
-
+    @tasks = Task.where(date:Date.today)
+    @task = Task.new
   end
 
   def create
@@ -15,7 +16,9 @@ class TopsController < ApplicationController
   end
 
   def destroy
-
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to tops_path
   end
 
   private

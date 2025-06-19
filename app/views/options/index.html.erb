@@ -1,0 +1,34 @@
+<h1> TOPページ </h1>
+
+<h2> 状態入力 </h2>
+
+<br>
+<br>
+<br>
+
+<%= form_with(model: @task, url: tops_path, method: :post) do |f| %>
+  <div>
+    <%= f.text_field :content %>
+  </div>
+
+  <div>
+    <%= f.hidden_field :date, value: Date.today %>
+  </div>
+
+  <div>
+    <%= f.hidden_field :complete, value: false %>
+  </div>
+
+  <div>
+    <%= f.submit "登録" %>
+  </div>
+<% end %>
+
+<br>
+<%= button_to "次へ", options_path, method: :show %>
+<br>
+<br>
+Test:
+<br>
+today:
+<%= Date.today %>
