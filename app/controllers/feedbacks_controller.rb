@@ -39,9 +39,9 @@ class FeedbacksController < ApplicationController
     c = tuning.C
 
     #シグモイド関数でチューニング
-    t += sigmoid(feed_back.tf)
-    m += sigmoid(feed_back.con)
-    c += sigmoid(feed_back.mtv)
+    t += sigmoid(feed_back.tf - 3) - 0.5
+    m += sigmoid(feed_back.con - 3) - 0.5
+    c += sigmoid(feed_back.mtv - 3) - 0.5
 
     #0.1~0.9の範囲に抑えるように
     t = [t, 0.1].max
