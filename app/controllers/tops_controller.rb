@@ -11,7 +11,7 @@ class TopsController < ApplicationController
     if @task.save
       redirect_to tops_path
     else
-      render :index, status; ;unprocessable_entity
+      render :index, status; ;unprocessable_entity, notice: "タスクの保存に失敗しました。"
     end
   end
 
