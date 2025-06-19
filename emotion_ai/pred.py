@@ -1,4 +1,5 @@
 import os
+import sys
 
 import config
 import pandas as pd
@@ -11,7 +12,7 @@ def main(path="test.csv"):
     Args:
         path (str): dataの中にある使いたいファイルを指定. Defaults to "test.csv".
     """
-
+    print("実行開始")
     test_texts = pd.read_csv(os.path.join(config.DATA_PATH, path),
                              dtype=pd.StringDtype())
 
@@ -72,4 +73,7 @@ def main(path="test.csv"):
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1:
+        main(sys.argv[1])
+    else:
+        main()
