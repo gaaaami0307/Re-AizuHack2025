@@ -23,5 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //感情と作業時間を表示する
     displayEmotion.textContent = emotion;
     emotionInput.value = ""; // 入力欄リセット
+
+
   });
 });

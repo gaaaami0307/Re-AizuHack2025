@@ -4,15 +4,18 @@ html {
 }
 
 body {
-  background: linear-gradient(to right, #2d3236, #395f7c);
   margin: 0;
-  padding: 0;
   height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #2d3236, #466f91);
+  color: #fff;
+  overflow: hidden;
 }
 
 /*-----List-----*/
 .List {
-  background-color: #466f91;
+  background-color: #3b5d7c;
+  box-shadow: 0 4px 10px rgba(0, 0, 0,0.6);
   border-radius: 1rem;
   height: 95%;
   width: 90%;
@@ -89,6 +92,7 @@ form button[type="submit"]:hover {
   font-size: clamp(0.8rem, 1.3vw, 1rem);
   color: white;
   margin-left: 0.4rem;
+  margin-top: -0.7rem;
 }
 
 /*-----List Item-----*/
@@ -130,4 +134,20 @@ form button[type="submit"]:hover {
 .task-text.done {
   text-decoration: line-through;
   color: #aaa;
+}
+
+.for-clock {
+  display: flex;
+  justify-content: space-between;
+}
+
+#clock {
+  width: 4rem;
+  height: 4rem;
+  margin-left: 0.5rem;
+}
+
+#clock:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
 }
