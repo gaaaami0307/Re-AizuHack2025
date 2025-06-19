@@ -8,4 +8,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :samples
+
+  resources :tops, only: [:index, :new, :create, :destroy]
+
+  resources :feedbacks, only: [:index, :create]
+
+  resources :histories, only: [:show]
+
 end
