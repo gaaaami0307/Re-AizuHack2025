@@ -1,64 +1,69 @@
 <h1> TOPページ </h1>
 
-<h2> タクスリスト </h2>
+<% if @end == false %>
 
-<ul>
-  <% @tasks.each do |task| %>
-    <li>
-      <%= task.content %> 
-      <% if !@plan.present? %>
-        <%= button_to "削除", top_path(task), method: :delete%>
-      <% end %>
-    </li>
+  <h2> タクスリスト </h2>
+
+  <ul>
+    <% @tasks.each do |task| %>
+      <li>
+        <%= task.content %> 
+        <% if !@plan.present? %>
+          <%= button_to "削除", top_path(task), method: :delete%>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <br>
+  <br>
+  <br>
+
+  <% if !@plan.present? %>
+
+    <%= form_with(model: @task, url: tops_path, method: :post) do |f| %>
+      <div>
+        <%= f.text_field :content %>
+      </div>
+
+      <div>
+        <%= f.hidden_field :date, value: Date.today %>
+      </div>
+
+      <div>
+        <%= f.hidden_field :complete, value: false %>
+      </div>
+
+      <div>
+        <%= f.submit "登録" %>
+      </div>
+    <% end %>
+    <br>
+    <%= button_to "次へ", options_path, method: :get %>
+    <br>
+
   <% end %>
-</ul>
 
-<br>
-<br>
-<br>
-
-<% if !@plan.present? %>
-
-  <%= form_with(model: @task, url: tops_path, method: :post) do |f| %>
-    <div>
-      <%= f.text_field :content %>
-    </div>
-
-    <div>
-      <%= f.hidden_field :date, value: Date.today %>
-    </div>
-
-    <div>
-      <%= f.hidden_field :complete, value: false %>
-    </div>
-
-    <div>
-      <%= f.submit "登録" %>
-    </div>
+  <% if @plan.present? %>
+    今日の勉強時間:
+    <%= (@plan.time.to_d/60).to_i %>
+    時間
+    <%= @plan.time - 60*((@plan.time.to_d/60).to_i) %>
+    分
+    <br>
+    <br>
+    1タスクあたり:
+    <%= ((@plan.time.to_d / @plan.num)/60).to_i %>
+    時間
+    <%= ((@plan.time.to_d / @plan.num) - 60*(((@plan.time.to_d / @plan.num)/60).to_i)).to_i %>
+    分
+    <br>
+    <br>
+    <%= button_to "終了", feedbacks_path, method: :get %>
+    <br>
   <% end %>
-  <br>
-  <%= button_to "次へ", options_path, method: :get %>
-  <br>
-
-<% end %>
-
-<% if @plan.present? %>
-  今日の勉強時間:
-  <%= (@plan.time.to_d/60).to_i %>
-  時間
-  <%= @plan.time - 60*((@plan.time.to_d/60).to_i) %>
-  分
-  <br>
-  <br>
-  1タスクあたり:
-  <%= ((@plan.time.to_d / @plan.num)/60).to_i %>
-  時間
-  <%= ((@plan.time.to_d / @plan.num) - 60*(((@plan.time.to_d / @plan.num)/60).to_i)).to_i %>
-  分
-  <br>
-  <br>
-  <%= button_to "終了", feedbacks_path, method: :get %>
-  <br>
+<% else %>
+本日のタスクは終了です。お疲れさまでした！
 <% end %>
 <br>
 Test:

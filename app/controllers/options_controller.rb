@@ -93,7 +93,7 @@ class OptionsController < ApplicationController
     time = ((maxtime*60) * percent).to_i
 
     #Planに記録
-    Plan.create(date:Date.today, ep:ep, num: numtask, time:time)
+    Plan.create(date:Date.today, ep:ep, num: numtask, time:time, finished:false)
 
     redirect_to tops_path
   end

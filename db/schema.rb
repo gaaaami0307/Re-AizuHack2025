@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_19_060048) do
     t.integer "ep"
     t.integer "num"
     t.integer "time"
+    t.boolean "finished"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

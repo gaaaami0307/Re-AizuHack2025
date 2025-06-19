@@ -5,9 +5,14 @@ class TopsController < ApplicationController
     @task = Task.new
     @plan = Plan.find_by(date:Date.today)
     @emotion = Emotion.find_by(date:Date.today)
+    @end = false
 
     if @plan.present?
       @tuning = Tuning.find_by(ep:@plan.ep)
+      
+      if @plan.finished == true
+        @end = true
+      end
     end
   end
 

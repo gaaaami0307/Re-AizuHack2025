@@ -5,6 +5,7 @@ class CreatePlans < ActiveRecord::Migration[7.1]
       t.integer :ep
       t.integer :num
       t.integer :time
+      t.boolean :finished
 
       t.timestamps
     end
