@@ -1,11 +1,12 @@
 class FeedbacksController < ApplicationController
 
   def index
-
+    @feedback = FeedBack.new
+    @ep = Plan.find_by(date:Date.today).ep
   end
 
   def create
-    @feedback = Food.new(feedback_params)
+    @feedback = FeedBack.new(feedback_params)
 
     if !@feedback.save
       render :index, status; ;unprocessable_entity

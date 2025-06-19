@@ -43,11 +43,15 @@ class OptionsController < ApplicationController
     system("python3 #{app_path} input.csv")
 
     #読み込み
+    negative = nil
+    neutral = nil
+    positive = nil
+
     CSV.foreach(output_path, encoding: "UTF-8").with_index(1) do |row, index|
       if index == 2
-        negative = row[2]
-        neutral = row[3]
-        positive = row[4]
+        negative = row[2].to_d
+        neutral = row[3].to_d
+        positive = row[4].to_d
         break
       end
     end
@@ -55,6 +59,7 @@ class OptionsController < ApplicationController
     Emotion.create(date:Date.today, positive:positive, neutral:neutral, negative:negative)
 
     #ep計算
+    ep = nil
     ep_judge = (2 * positive) + (-2 * negative)
 
     if ep_judge >= 1.5 
@@ -88,7 +93,7 @@ class OptionsController < ApplicationController
     time = ((maxtime*60) * percent).to_i
 
     #Planに記録
-    Plan.create(date:Date.today, num: numtask, time:time)
+    Plan.create(date:Date.today, ep:ep, num: numtask, time:time)
 
     redirect_to tops_path
   end

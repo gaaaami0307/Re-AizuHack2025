@@ -4,6 +4,11 @@ class TopsController < ApplicationController
     @tasks = Task.where(date:Date.today)
     @task = Task.new
     @plan = Plan.find_by(date:Date.today)
+    @emotion = Emotion.find_by(date:Date.today)
+
+    if @plan.present?
+      @tuning = Tuning.find_by(ep:@plan.ep)
+    end
   end
 
   def create

@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_19_060048) do
 
   create_table "plans", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date"
+    t.integer "ep"
     t.integer "num"
     t.integer "time"
     t.datetime "created_at", null: false
