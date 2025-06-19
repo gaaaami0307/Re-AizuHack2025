@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :samples
 
-  resources :tops, only: [:index, :new, :create, :destroy]
+  resources :tops, only: [:index, :create, :destroy]
+
+  resources :options, only: [:index, :create]
 
   resources :feedbacks, only: [:index, :create]
 
