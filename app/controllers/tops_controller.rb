@@ -3,6 +3,7 @@ class TopsController < ApplicationController
   def index
     @tasks = Task.where(date:Date.today)
     @task = Task.new
+    @plan = Plan.find_by(date:Date.today)
   end
 
   def create
