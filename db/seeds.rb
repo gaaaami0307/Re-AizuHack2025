@@ -8,6 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Food.create(name:"potato", price:300)
-Food.create(name:"carrot", price:300)
-Food.create(name:"sushi", price:800)
+Tuning.create(ep:1, T:0.13, M:0.13, C:0.13)
+Tuning.create(ep:2, T:0.26, M:0.26, C:0.26)
+Tuning.create(ep:3, T:0.39, M:0.39, C:0.39)
+Tuning.create(ep:4, T:0.52, M:0.52, C:0.52)
+Tuning.create(ep:5, T:0.65, M:0.65, C:0.17)
