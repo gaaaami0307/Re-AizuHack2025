@@ -39,10 +39,10 @@ class FeedbacksController < ApplicationController
     m = tuning.M
     c = tuning.C
 
-    #シグモイド関数でチューニング
-    t += sigmoid(feed_back.tf - 3) - 0.5
-    m += sigmoid(feed_back.con - 3) - 0.5
-    c += sigmoid(feed_back.mtv - 3) - 0.5
+    # tanh関数でチューニング
+    t += tanh(feed_back.tf - 3) / 2
+    m += tanh(feed_back.con - 3) / 2
+    c += tanh(feed_back.mtv - 3) / 2
 
     #0.1~0.9の範囲に抑えるように
     t = [t, 0.1].max
@@ -63,8 +63,9 @@ class FeedbacksController < ApplicationController
     puts "----------------------------------------"
   end
 
-  def sigmoid(x)
-    1.0 / (1.0 + Math.exp(-x))
+  def tanh(x)
+    # 値域 [-1, 1]
+    (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x))
   end
 
 end
