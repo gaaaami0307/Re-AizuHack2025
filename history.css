@@ -39,3 +39,31 @@ h1 {
   margin-bottom: 1rem;
   color: #fff;
 }
+
+/*button style*/
+
+.history-buttons {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.3rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.history-buttons button {
+  background: linear-gradient(to right, #5a4c3b, #7d6b58);
+  border: none;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
