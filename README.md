@@ -27,3 +27,7 @@ example: "develop/gaaaami0307"
 ・"./start.sh"を実行することでサーバーが建ちます。
 
 ・動かしてる途中に不具合が発生した場合、"./dbreset.sh"を行ってください。
+
+・プレゼンで使った動画は次になります。
+
+https://youtu.be/hDLt5NWm2gc
