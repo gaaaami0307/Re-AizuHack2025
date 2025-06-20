@@ -6,7 +6,7 @@ class OptionsController < ApplicationController
 
     #タスクなしの状態でこれなくする
     if !Task.where(date:Date.today).present?
-      redirect_to tops_path, notice: "最低でも1件のタスクを入力してください。"
+      render json: { error: "最低でも1件のタスクを入力してください。" }, status: :bad_request
       return
     end
     
@@ -17,14 +17,16 @@ class OptionsController < ApplicationController
   def create
 
     if Input.where(date:Date.today).present?
-      redirect_to options_path, notice: "すでに今日の状態を入力しました。"
+      render json: { error: "すでに今日の状態を入力しました。" }, status: :bad_request
+
       return
     end
 
     @input = Input.new(input_params)
 
     if !@input.save
-      redirect_to options_path, notice: "感情を入力してください。"
+      render json: { error: "保存に失敗しました。" }, status: :bad_request
+
       return
     end
 
@@ -95,7 +97,9 @@ class OptionsController < ApplicationController
     #Planに記録
     Plan.create(date:Date.today, ep:ep, num: numtask, time:time, finished:false)
 
-    redirect_to tops_path
+    #redirect_to tops_path
+    head :no_content
+
   end
 
   private

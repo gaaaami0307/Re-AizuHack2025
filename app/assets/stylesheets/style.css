@@ -54,7 +54,7 @@ form input[type="text"] {
 /* ボタン */
 form button[type="submit"] {
   font-size: 1.5rem;
-  background-color: #3b3d41;
+  background-color: #4a90e2;
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -64,7 +64,7 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-  background-color: gray;
+  background-color: #4a90e2;
   transform: scale(1.1);
 }
 
@@ -75,6 +75,12 @@ form button[type="submit"]:hover {
   margin: auto; /* 中央寄せ */
 }
 
+#finish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* 中央寄せ */
+}
 
 /*-----List Text-----*/
 .List-text {
@@ -148,6 +154,14 @@ form button[type="submit"]:hover {
 }
 
 #clock:hover {
-  transform: scale(1.2);
-  transition: transform 0.2s ease;
+  transform: scale(1.1);
+  transition: transform 0.35s ease;
+  transform: rotate(360deg);
+}
+
+#recommend-time {
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+  color: white;
+  margin-left: 0.4rem;
+  margin-top: -0.7rem;
 }

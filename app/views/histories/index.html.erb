@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>履歴</title>
+  <%= stylesheet_link_tag "history.css", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "date", "data-turbo-track": "reload", defer: true %>
+</head>
+
+<body>
+  <div class="history-container">
+    <div class="history-buttons">
+      <a href="/histories/?date=<%= @prev %>">
+        <button class="history-button-before"><</button>
+      </a>
+      <a href="/histories/?date=<%= @next %>">
+        <button class="history-button-next">></button>
+      </a>
+  </div>
+  <h1>履歴</h1>
+  <p id="discription">ここでは、過去のタスクや感情の履歴を確認できます。</p>
+
+  <% week_ja = ["日", "月", "火", "水", "木", "金", "土"] %>
+  <% today = @today %>
+  <% month = today.month %>
+  <% day = today.day %>
+  <% week = week_ja[today.wday] %>
+
+  <p><%= "#{month}月#{day}日（#{week}）" %></p>
+
+  <% if @enable %>
+    <div class="List-text">
+        <h2>タスク</h2>
+
+        <ul id="task-list">
+          <% @tasks.each do |task| %>
+          <li>
+            <span class="task-text"> <%= task.content %> </span>
+          </li>
+          <% end %>
+        </ul>
+
+        <br>
+        <br>
+        <h2>作業時間</h2>
+
+        <p id="recommend-time">推奨作業時間 ...
+          <%= (@plan.time.to_d/60).to_i %>
+          時間
+          <%= @plan.time - 60*((@plan.time.to_d/60).to_i) %>
+          分
+          <br>
+          <br>
+          1タスクあたり ...
+          <%= ((@plan.time.to_d / @plan.num)/60).to_i %>
+          時間
+          <%= ((@plan.time.to_d / @plan.num) - 60*(((@plan.time.to_d / @plan.num)/60).to_i)).to_i %>
+          分
+        </p>
+        <br>
+        <br>
+
+        <h2>この日の感情</h2>
+        <p><%= @input.emotion %></p>
+
+    </div>
+  <% else %>
+    <p>この日の履歴はありません。</p>
+  <% end %>
+
+  <br>
+  <form id="finish" action="/tops/">
+    <button type="submit">TOPページに戻る</button>
+  </form>
+</body>
+</html> 

@@ -1,94 +1,92 @@
-<h1> TOPページ </h1>
+<!DOCTYPE html>
+<html lang="ja">
 
-<% if @end == false %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List(仮)</title>
+  <%= stylesheet_link_tag "style.css", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "date", "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "list", "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "move-prevent", "data-turbo-track": "reload", defer: true %>
+</head>
 
-  <h2> タスクリスト </h2>
+<body>
+  <div class="List">
+    <div class="List-text">
+      <div class="for-clock">
+        <h2 id="Todo">今日の予定</h2>
+        <a href="/histories/?date=<%= @today %>">
+          <%= image_tag "clock.png", id:"clock" %>
+        </a>
+      </div>
+      <p id="today"></p>
 
-  <ul>
-    <% @tasks.each do |task| %>
-      <li>
-        <%= task.content %> 
-        <% if !@plan.present? %>
-          <%= button_to "削除", top_path(task), method: :delete%>
+      <% if @end == false %>
+
+        <% if @plan.present? %>
+        <p id="recommend-time">推奨作業時間 ...
+          <%= (@plan.time.to_d/60).to_i %>
+          時間
+          <%= @plan.time - 60*((@plan.time.to_d/60).to_i) %>
+          分
+          <br>
+          <br>
+          1タスクあたり ...
+          <%= ((@plan.time.to_d / @plan.num)/60).to_i %>
+          時間
+          <%= ((@plan.time.to_d / @plan.num) - 60*(((@plan.time.to_d / @plan.num)/60).to_i)).to_i %>
+          分
+        </p>
         <% end %>
-      </li>
+        <ul id="task-list">
+          <% @tasks.each do |task| %>
+          <li>
+            <span class="task-text"> <%= task.content %> </span>
+            <% if !@plan.present? %>
+              <button class="delete-btn", data-task-id= <%= task.id %> >✕</button>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <% if @end == false %>
+      <% if !@plan.present? %>
+        <div>
+          <%= form_with(model: @task, url: tops_path, method: :post, html:{ id: "task-form" }) do |f| %>
+              <%= f.text_field :content, placeholder: "やりたいことは？", required: true %>
+              <%= f.hidden_field :date, value: Date.today %>
+              <%= f.hidden_field :complete, value: false %>
+          <% end %>
+
+          <form id="next" action="/options/">
+            <button type="submit">感情・時間入力フォームへ進む</button>
+          </form>
+        </div>
+      <% end %>
+
+      <% if @plan.present? %>
+        <div>
+        
+          <form id="finish" action="/feedbacks/">
+                <button type="submit">タスクを終了し、フィードバックを入力する</button>
+          </form>
+        
+        </div>
+      <% end %>
+    <% else %>
+      <p>
+        今日のタスクは終了しました。お疲れさまでした！！
+      </p>
     <% end %>
-  </ul>
 
-  <br>
-  <br>
-  <br>
+  </div>
+  
+</body>
+</html>
 
-  <% if !@plan.present? %>
+<!--タスクのリスト化はlist.js-->
+<!-- date.jsは日付の表示 -->
+<!-- move-prevent.jsはページ移動の防止(不要かも？) -->
 
-    <%= form_with(model: @task, url: tops_path, method: :post) do |f| %>
-      <div>
-        <%= f.text_field :content %>
-      </div>
-
-      <div>
-        <%= f.hidden_field :date, value: Date.today %>
-      </div>
-
-      <div>
-        <%= f.hidden_field :complete, value: false %>
-      </div>
-
-      <div>
-        <%= f.submit "登録" %>
-      </div>
-    <% end %>
-    <br>
-    <%= button_to "次へ", options_path, method: :get %>
-    <br>
-
-  <% end %>
-
-  <% if @plan.present? %>
-    今日の勉強時間:
-    <%= (@plan.time.to_d/60).to_i %>
-    時間
-    <%= @plan.time - 60*((@plan.time.to_d/60).to_i) %>
-    分
-    <br>
-    <br>
-    1タスクあたり:
-    <%= ((@plan.time.to_d / @plan.num)/60).to_i %>
-    時間
-    <%= ((@plan.time.to_d / @plan.num) - 60*(((@plan.time.to_d / @plan.num)/60).to_i)).to_i %>
-    分
-    <br>
-    <br>
-    <%= button_to "終了", feedbacks_path, method: :get %>
-    <br>
-  <% end %>
-<% else %>
-本日のタスクは終了です。お疲れさまでした！
-<% end %>
-<br>
-Test:
-<br>
-today:
-<% if @plan.present? %>
-  ep: <%= @plan.ep %>
-  <br>
-  date: <%= @plan.date %>
-  <br>
-  num: <%= @plan.num %>
-  <br>
-  time: <%= @plan.time %>
-  <br>
-  positive: <%= @emotion.positive %>
-  <br>
-  neutral: <%= @emotion.neutral %>
-  <br>
-  negative: <%= @emotion.negative %>
-  <br>
-  Tuning T: <%= @tuning.T %>
-  <br>
-  Tuning M: <%= @tuning.M %>
-  <br>
-  Tuning C: <%= @tuning.C %>
-  <br>
-<% end %>
-<%= Date.today %>
