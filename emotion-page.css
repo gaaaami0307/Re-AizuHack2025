@@ -1,14 +1,12 @@
 html {
-  height: 100%;
-  width: 100%
+  width: 100%;
 }
 
 body {
   background: linear-gradient(to right, #2d3236, #466f91);
   margin: 0;
   padding: 0;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
 }
 
 .All {
@@ -16,9 +14,9 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border-radius: 1rem;
   height: auto;
-  width: 90%;
+  width: 80%;
   max-width: 60rem;
-  margin: 1.0rem auto;
+  margin: 5rem auto;
   padding: 0.5rem 1.5rem;
   position: relative;/*List親*/
   z-index: 500;
@@ -30,7 +28,8 @@ body {
 
 /* -----数直線の長さ----- */
 #duration-range {
-  width: 100%;
+  width: 99%;
+  margin-left: 0.3rem;
 }
 
 /* -----数直線の数字関連----- */
@@ -68,11 +67,11 @@ body {
 
 #submit-button {
   margin-top: 1rem;
-  display: block;        /* ← ブロック要素として扱う（重要） */
-  margin: 0 auto;        /* ← 横方向中央にする */
-  width: 50%;            /* 幅は好きなサイズでOK */
+  display: block;        
+  margin: 0 auto;        
+  width: 50%;            
   font-size: 1rem;
-  background-color: #3d4247;
+  background-color: #4a90e2;
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -80,3 +79,20 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+#submit-button:hover {
+  background-color: #4a90e2;
+  transform: scale(1.05);
+}
+
+h1 {
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+}
+h3 {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
