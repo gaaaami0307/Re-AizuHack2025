@@ -95,7 +95,9 @@ class OptionsController < ApplicationController
     #Planに記録
     Plan.create(date:Date.today, ep:ep, num: numtask, time:time, finished:false)
 
-    redirect_to tops_path
+    #redirect_to tops_path
+    head :no_content
+
   end
 
   private
