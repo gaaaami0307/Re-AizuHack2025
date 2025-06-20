@@ -4,3 +4,4 @@
 //= link list.js
 //= link move-prevent.js
 //= link emotion.js
+//= link feedback.js

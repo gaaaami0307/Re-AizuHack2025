@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>フィードバックフォーム</title>
-  <link rel="stylesheet" href="feedback-page.css">
-  <script src="feedback.js" defer></script>
+  <%= stylesheet_link_tag "feedback-page.css", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "feedback", "data-turbo-track": "reload", defer: true %>
 </head>
 
 <body> 
@@ -17,7 +17,7 @@
         <div class="labels-text-time">
         <span>長く感じた</span><span>短く感じた</span>
         </div>
-        <input type="range" id="feedback-range-time" min="1" max="5" step="1" value="0">
+        <input type="range" id="feedback-range-time" min="1" max="5" step="1" value="3">
         <div class="time-labels-time">
           <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
         </div>
@@ -27,7 +27,7 @@
         <div class=" labels-text-consentrate">
           <span>集中できなかった</span><span>集中できた</span>
         </div>
-        <input type="range" id="feedback-range-consentrate" min="1" max="5" step="1" value="0">
+        <input type="range" id="feedback-range-consentrate" min="1" max="5" step="1" value="3">
         <div class="time-labels-consentrate">
           <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
         </div>
@@ -37,13 +37,16 @@
       <div class="labels-text-motivation">
       <span>意欲なし</span><span>意欲あり</span>
       </div>
-      <input type="range" id="feedback-range-motiveation" min="1" max="5" step="1" value="0">
+      <input type="range" id="feedback-range-motiveation" min="1" max="5" step="1" value="3">
         <div class="time-labels-motivation">
           <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
         </div>
-        <form>
+        <form id="submit-form">
           <button type="submit" id="submit-feedback">フィードバックを送信</button>
         </form>
       </div>
   </div>
+
+  <!--  epを送るフィールド -->
+  <input type="hidden" name="ep" ,id="epField", value=<%= @ep %>>
 </body>
