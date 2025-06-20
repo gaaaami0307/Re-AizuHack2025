@@ -1,0 +1,153 @@
+html {
+  height: 100%;
+  width: 100%
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #2d3236, #466f91);
+  color: #fff;
+  overflow: hidden;
+}
+
+/*-----List-----*/
+.List {
+  background-color: #3b5d7c;
+  box-shadow: 0 4px 10px rgba(0, 0, 0,0.6);
+  border-radius: 1rem;
+  height: 95%;
+  width: 90%;
+  max-width: 60rem;
+  margin: 1.0rem auto;
+  padding: 0.5rem 1.5rem;
+  position: relative;/*List親*/
+  z-index: 500;
+  /*List-txtとformを上下で分割する*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* -----common form style----- */
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* -----入力欄----- */
+form input[type="text"] {
+  flex: 1;/*padding,marginを考慮しListに限界まで広げる*/
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #3b3d41;
+  color: white;
+}
+
+/* ボタン */
+form button[type="submit"] {
+  font-size: 1.5rem;
+  background-color: #3b3d41;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;/*背景0.3s,拡大0.2s*/
+}
+
+form button[type="submit"]:hover {
+  background-color: gray;
+  transform: scale(1.1);
+}
+
+#next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* 中央寄せ */
+}
+
+
+/*-----List Text-----*/
+.List-text {
+  display: flex;
+  flex-direction: column;
+}
+
+#Todo {
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  color: white;
+  margin: 0;
+}
+
+#today {
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+  color: white;
+  margin-left: 0.4rem;
+  margin-top: -0.7rem;
+}
+
+/*-----List Item-----*/
+#task-list {
+  list-style: none;
+  padding-left: 0;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+#task-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.delete-btn {
+  margin-left: 1rem;
+  background-color: #be3737;
+  border: none;
+  border-radius: 0.3rem;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000;
+}
+
+
+/*-----Task Text Toggle-----*/
+.task-text { /*avctive時(初期)*/
+  cursor: pointer;
+}
+
+.task-text.done {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.for-clock {
+  display: flex;
+  justify-content: space-between;
+}
+
+#clock {
+  width: 4rem;
+  height: 4rem;
+  margin-left: 0.5rem;
+}
+
+#clock:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
