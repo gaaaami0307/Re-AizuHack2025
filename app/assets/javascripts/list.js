@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("task-form");
-  const input = form.querySelector("input");
+  
+  if (form) {
+    const input = form.querySelector("input");
 
-  let taskList = document.getElementById("task-list");
-  if (!taskList) { //上行で取得時taskListが存在しない(初回ロード時)は新規作成
-    taskList = document.createElement("ul");
-    taskList.id = "task-list-js";//ul要素にIDを設定
-    form.after(taskList);
+    let taskList = document.getElementById("task-list");
+    if (!taskList) { //上行で取得時taskListが存在しない(初回ロード時)は新規作成
+      taskList = document.createElement("ul");
+      taskList.id = "task-list-js";//ul要素にIDを設定
+      form.after(taskList);
+    }
   }
 
   //タスクにイベントを追加

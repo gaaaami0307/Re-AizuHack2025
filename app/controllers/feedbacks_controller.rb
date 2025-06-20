@@ -53,6 +53,14 @@ class FeedbacksController < ApplicationController
     c = [c, 0.9].min
 
     tuning.update(T:t, M:m, C:c)
+    puts "----------------------------------------"
+    puts "t:"
+    puts t
+    puts "m:"
+    puts m
+    puts "c:"
+    puts c
+    puts "----------------------------------------"
   end
 
   def sigmoid(x)
