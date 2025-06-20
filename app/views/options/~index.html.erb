@@ -1,0 +1,53 @@
+<h1> TOPページ </h1>
+
+<h2> 状態入力 </h2>
+
+<br>
+<br>
+<br>
+
+<%= form_with(model: @input, url: options_path, method: :post) do |f| %>
+  <div>
+    <%= f.label :emotion, "今の気分を入力"%>
+    <%= f.text_field :emotion %>
+  </div>
+
+  <div>
+    <%= f.hidden_field :date, value: Date.today %>
+  </div>
+
+  <div>
+    <%= f.label :maxtime, "勉強時間"%>
+    <%= f.range_field :maxtime, in: 1..12, step: 0.25, id: "slider" %>
+    <span id="value">5</span><br>
+  </div>
+
+  <div>
+    <%= f.submit "タスクを始める" %>
+  </div>
+<% end %>
+
+<br>
+<br>
+Test:
+<br>
+inputed
+<% if @inputed.present? %>
+  <%= @inputed.emotion %>
+  <%= @inputed.maxtime %>
+<% end %>
+<!-- スライダー用JavaScript -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const slider = document.getElementById("slider");
+    const valueDisplay = document.getElementById("value");
+
+    // 初期値表示
+    valueDisplay.textContent = slider.value;
+
+    // スライダー変更時にリアルタイム更新
+    slider.addEventListener("input", function() {
+      valueDisplay.textContent = slider.value;
+    });
+  });
+</script>

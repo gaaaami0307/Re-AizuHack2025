@@ -1,53 +1,38 @@
-<h1> TOPページ </h1>
+<!DOCTYPE html>
+<html lang="ja">
 
-<h2> 状態入力 </h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>感情・時間入力フォーム(仮)</title>
+  <%= stylesheet_link_tag "emotion-page.css", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "emotion", "data-turbo-track": "reload", defer: true %>
+</head>
 
-<br>
-<br>
-<br>
+<body>
+  <div class="All"> 
+    <h1>作業時間・気分フォーム</h1>
+    <h3>作業時間: <span id="display-duration">0.00</span> 時間</h3>
+    <h3>今の気分: <span id="display-emotion">（未入力）</span></h3>
 
-<%= form_with(model: @input, url: options_path, method: :post) do |f| %>
-  <div>
-    <%= f.label :emotion, "今の気分を入力"%>
-    <%= f.text_field :emotion %>
+    <div class="input-container">
+      <form id="emotion-form">
+
+        <div id="output-area"></div>
+
+        <label for="duration-range">作業時間を選択してください</label>
+        <input type="range" id="duration-range" min="0" max="12" step="0.25" value="0">
+
+        <div class="time-labels">
+          <span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span><span>12</span>
+        </div>
+
+        <input type="text" id="emotion-input" placeholder="今の気分は？" required>
+      </form>
+      <form>
+        <button type="submit" id="submit-button">送信</button>
+      </form>
+    </div>
   </div>
-
-  <div>
-    <%= f.hidden_field :date, value: Date.today %>
-  </div>
-
-  <div>
-    <%= f.label :maxtime, "勉強時間"%>
-    <%= f.range_field :maxtime, in: 1..12, step: 0.25, id: "slider" %>
-    <span id="value">5</span><br>
-  </div>
-
-  <div>
-    <%= f.submit "タスクを始める" %>
-  </div>
-<% end %>
-
-<br>
-<br>
-Test:
-<br>
-inputed
-<% if @inputed.present? %>
-  <%= @inputed.emotion %>
-  <%= @inputed.maxtime %>
-<% end %>
-<!-- スライダー用JavaScript -->
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const slider = document.getElementById("slider");
-    const valueDisplay = document.getElementById("value");
-
-    // 初期値表示
-    valueDisplay.textContent = slider.value;
-
-    // スライダー変更時にリアルタイム更新
-    slider.addEventListener("input", function() {
-      valueDisplay.textContent = slider.value;
-    });
-  });
-</script>
+</body>
+</html>
