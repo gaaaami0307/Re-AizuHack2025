@@ -42,14 +42,14 @@ for model_name in config.MODELS_LIST:
 
     # ハイパーパラメータの設定
     training_args = TrainingArguments(
-        output_dir = f'./results_{model_name.replace("/", "_")}',  # noqa
-        num_train_epochs = 6,  # type: ignore  # noqa
-        per_device_train_batch_size = 8,  # type: ignore  # noqa
-        save_strategy = "no",  # noqa
-        logging_steps = 500,  # type: ignore  # noqa
-        warmup_ratio = 0.1,  # type: ignore  # noqa
-        learning_rate = 1e-5,  # type: ignore  # noqa
-        report_to = "none",  # noqa
+        output_dir=f'./results_{model_name.replace("/", "_")}',
+        num_train_epochs=20,
+        per_device_train_batch_size=8,
+        save_strategy="no",
+        logging_steps=500,
+        warmup_ratio=0.1,
+        learning_rate=1e-5,
+        report_to="none",
     )
 
     trainer = Trainer(
@@ -59,7 +59,7 @@ for model_name in config.MODELS_LIST:
         processing_class=tokenizer,
     )
 
-    trainer.train()  # type: ignore
+    trainer.train()
 
     # modelの保存
     model.save_pretrained(
