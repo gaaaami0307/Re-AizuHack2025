@@ -9,20 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   //送信ボタン
   submitForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    //気分が空||未入力の場合
-    if (displayEmotion.textContent === "" || displayEmotion.textContent === "（未入力）") {
-      alert("気分が入力されていません！");
-      return;
-    }
-
-    //作業時間0の場合
-    if (parseFloat(range.value) === 0) {
-      alert("作業時間を入力してください！");
-      return;
-    }
     
-    //POSTリクエスト送信
+    //---POSTリクエスト送信
 
     // 今日の日付を "YYYY-MM-DD" 形式で取得
     const today = new Date().toISOString().split('T')[0];
@@ -37,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "input":{
+        "feed_back":{
           date: today,
           ep : epField.value,
           tf: parseInt(rangeT.value),

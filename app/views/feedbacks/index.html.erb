@@ -12,41 +12,42 @@
 <body> 
   <div class="container">
     <h1>タスクのフィードバック</h1>
-      <div class="feedback-time">
-        <label for="feedback-text">時間の感じ方</label>
-        <div class="labels-text-time">
-        <span>長く感じた</span><span>短く感じた</span>
-        </div>
-        <input type="range" id="feedback-range-time" min="1" max="5" step="1" value="3">
-        <div class="time-labels-time">
-          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-        </div>
+    <div class="feedback-time">
+      <label for="feedback-text">時間の感じ方</label>
+      <div class="labels-text-time">
+      <span>長く感じた</span><span>短く感じた</span>
       </div>
-      <div class="feedback-consentrate">
-        <label for="feedback-text">集中度</label>
-        <div class=" labels-text-consentrate">
-          <span>集中できなかった</span><span>集中できた</span>
-        </div>
-        <input type="range" id="feedback-range-consentrate" min="1" max="5" step="1" value="3">
-        <div class="time-labels-consentrate">
-          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-        </div>
+      <input type="range" id="feedback-range-time" min="1" max="5" step="1" value="3">
+      <div class="time-labels-time">
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
       </div>
-      <div class="feedback-motibation">
+    </div>
+    <div class="feedback-consentrate">
+      <label for="feedback-text">集中度</label>
+      <div class=" labels-text-consentrate">
+        <span>集中できなかった</span><span>集中できた</span>
+      </div>
+      <input type="range" id="feedback-range-consentrate" min="1" max="5" step="1" value="3">
+      <div class="time-labels-consentrate">
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+      </div>
+    </div>
+    <div class="feedback-motibation">
       <label for="feedback-text">モチベーション</label>
       <div class="labels-text-motivation">
-      <span>意欲なし</span><span>意欲あり</span>
+        <span>意欲なし</span><span>意欲あり</span>
       </div>
       <input type="range" id="feedback-range-motiveation" min="1" max="5" step="1" value="3">
-        <div class="time-labels-motivation">
-          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-        </div>
-        <form id="submit-form">
-          <button type="submit" id="submit-feedback">フィードバックを送信</button>
-        </form>
+      <div class="time-labels-motivation">
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
       </div>
+    </div>
+    
+    <form id="submit-form">
+    <button type="submit" id="submit-feedback">フィードバックを送信</button>
+    </form>
   </div>
 
   <!--  epを送るフィールド -->
-  <input type="hidden" name="ep" ,id="epField", value=<%= @ep %>>
+  <input type="hidden" name="ep" id="epField" value="<%= @ep %>">
 </body>

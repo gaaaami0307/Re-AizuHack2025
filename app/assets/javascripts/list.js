@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       }).then(response => {
         window.location.href = '/tops/';
+      }).catch(error =>{
+        alert(error);
+        return;
       })
 
     })

@@ -9,7 +9,7 @@ class FeedbacksController < ApplicationController
     @feed_back = FeedBack.new(feed_back_params)
 
     if !@feed_back.save
-      render :index, notice: "フィードバックの保存に失敗しました。"
+      render json: { error: "フィードバックの保存に失敗しました" }, status: :bad_request
       return
     end
 
@@ -20,7 +20,8 @@ class FeedbacksController < ApplicationController
     #チューニング
     tuning_parameter()
 
-    redirect_to tops_path
+    #redirect_to tops_path
+    head :no_content
   end
 
   private

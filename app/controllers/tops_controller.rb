@@ -6,6 +6,7 @@ class TopsController < ApplicationController
     @plan = Plan.find_by(date:Date.today)
     @emotion = Emotion.find_by(date:Date.today)
     @end = false
+    @today = Date.today
 
     if @plan.present?
       @tuning = Tuning.find_by(ep:@plan.ep)
@@ -31,7 +32,7 @@ class TopsController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    
+
     head :no_content
   end
 

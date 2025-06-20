@@ -15,61 +15,70 @@
   <div class="List">
     <div class="List-text">
       <div class="for-clock">
-      <h2 id="Todo">今日の予定</h2>
-      <a href=""><!--後でがみさんがなんとかしてくれるはず-->
-        <%= image_tag "clock.png", id:"clock" %>
-      </a>
+        <h2 id="Todo">今日の予定</h2>
+        <a href="/histories/?date=<%= @today %>">
+          <%= image_tag "clock.png", id:"clock" %>
+        </a>
       </div>
       <p id="today"></p>
 
-      <% if @plan.present? %>
-      <p id="recommend-time">推奨作業時間 ...
-        <%= (@plan.time.to_d/60).to_i %>
-        時間
-        <%= @plan.time - 60*((@plan.time.to_d/60).to_i) %>
-        分
-        <br>
-        <br>
-        1タスクあたり ...
-        <%= ((@plan.time.to_d / @plan.num)/60).to_i %>
-        時間
-        <%= ((@plan.time.to_d / @plan.num) - 60*(((@plan.time.to_d / @plan.num)/60).to_i)).to_i %>
-        分
-      </p>
-      <% end %>
-      <ul id="task-list">
-        <% @tasks.each do |task| %>
-        <li>
-          <span class="task-text"> <%= task.content %> </span>
-          <% if !@plan.present? %>
-            <button class="delete-btn", data-task-id= <%= task.id %> >✕</button>
+      <% if @end == false %>
+
+        <% if @plan.present? %>
+        <p id="recommend-time">推奨作業時間 ...
+          <%= (@plan.time.to_d/60).to_i %>
+          時間
+          <%= @plan.time - 60*((@plan.time.to_d/60).to_i) %>
+          分
+          <br>
+          <br>
+          1タスクあたり ...
+          <%= ((@plan.time.to_d / @plan.num)/60).to_i %>
+          時間
+          <%= ((@plan.time.to_d / @plan.num) - 60*(((@plan.time.to_d / @plan.num)/60).to_i)).to_i %>
+          分
+        </p>
+        <% end %>
+        <ul id="task-list">
+          <% @tasks.each do |task| %>
+          <li>
+            <span class="task-text"> <%= task.content %> </span>
+            <% if !@plan.present? %>
+              <button class="delete-btn", data-task-id= <%= task.id %> >✕</button>
+            <% end %>
+          </li>
           <% end %>
-        </li>
-        <% end %>
-      </ul>
+        </ul>
+      <% end %>
     </div>
-    <% if !@plan.present? %>
-      <div>
-        <%= form_with(model: @task, url: tops_path, method: :post, html:{ id: "task-form" }) do |f| %>
-            <%= f.text_field :content, placeholder: "やりたいことは？", required: true %>
-            <%= f.hidden_field :date, value: Date.today %>
-            <%= f.hidden_field :complete, value: false %>
-        <% end %>
+    <% if @end == false %>
+      <% if !@plan.present? %>
+        <div>
+          <%= form_with(model: @task, url: tops_path, method: :post, html:{ id: "task-form" }) do |f| %>
+              <%= f.text_field :content, placeholder: "やりたいことは？", required: true %>
+              <%= f.hidden_field :date, value: Date.today %>
+              <%= f.hidden_field :complete, value: false %>
+          <% end %>
 
-        <form id="next" action="/options/">
-          <button type="submit">感情・時間入力フォームへ進む</button>
-        </form>
-      </div>
-    <% end %>
+          <form id="next" action="/options/">
+            <button type="submit">感情・時間入力フォームへ進む</button>
+          </form>
+        </div>
+      <% end %>
 
-    <% if @plan.present? %>
-      <div>
-      
-        <form id="finish" action="/feedbacks/">
-              <button type="submit">タスクを終了し、フィードバックを入力する</button>
-        </form>
-      
-      </div>
+      <% if @plan.present? %>
+        <div>
+        
+          <form id="finish" action="/feedbacks/">
+                <button type="submit">タスクを終了し、フィードバックを入力する</button>
+          </form>
+        
+        </div>
+      <% end %>
+    <% else %>
+      <p>
+        今日のタスクは終了しました。お疲れさまでした！！
+      </p>
     <% end %>
 
   </div>

@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 
   resources :feedbacks, only: [:index, :create]
 
-  resources :histories, only: [:show]
+  resources :histories, only: [:index]
 
 end
