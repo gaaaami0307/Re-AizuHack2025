@@ -1,0 +1,102 @@
+/* 全体背景とフォント */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #2d3236, #466f91);
+  color: #fff;
+}
+
+/* 中央寄せのコンテナ */
+.container {
+  background-color: #3b5d7c;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 見出し */
+.container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+/* 各セクションの間隔 */
+.feedback-time,
+.feedback-consentrate,
+.feedback-motibation {
+  margin-bottom: 2rem;
+}
+
+/* ラベル */
+label {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* スライダー */
+input[type="range"] {
+  width: 100%;
+  height: 1.5rem;
+  background: #ccc;
+  border-radius: 0.5rem;
+  outline: none;
+  -webkit-animation: none;
+}
+
+/* スライダーのつまみ */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ffcc00;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #ffd633;
+}
+
+/* 1-5 */
+.time-labels-time,
+.time-labels-consentrate,
+.time-labels-motivation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0 0.2rem;
+  font-size: 0.9rem;
+}
+
+/* lebelsあの左右にあるやつ */
+.labels-text-time,
+.labels-text-consentrate,
+.labels-text-motivation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* ボタン */
+button {   
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0.8rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
