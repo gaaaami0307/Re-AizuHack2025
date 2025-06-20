@@ -40,9 +40,9 @@ class FeedbacksController < ApplicationController
     c = tuning.C
 
     # tanh関数でチューニング
-    t += tanh(feed_back.tf - 3) / 2
-    m += tanh(feed_back.con - 3) / 2
-    c += tanh(feed_back.mtv - 3) / 2
+    t += tanh(feed_back.tf - 3) / 4
+    m += tanh(feed_back.con - 3) / 4
+    c += tanh(feed_back.mtv - 3) / 4
 
     #0.1~0.9の範囲に抑えるように
     t = [t, 0.1].max
