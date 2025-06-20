@@ -67,3 +67,8 @@ h1 {
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
+.history-buttons button:hover {
+  background: linear-gradient(to right, #7d6b58, #5a4c3b);
+  transform: translateY(-2px); /*あがるよ*/
+}
