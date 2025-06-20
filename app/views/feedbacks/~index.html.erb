@@ -1,0 +1,72 @@
+<h1> フィードバック </h1>
+
+<h2> 今日のタスクはどうでしたか？ </h2>
+
+<br>
+<br>
+<br>
+
+<%= form_with(model: @feed_back, url: feedbacks_path, method: :post) do |f| %>
+
+  <div>
+    <%= f.hidden_field :date, value: Date.today %>
+  </div>
+
+  <div>
+    <%= f.hidden_field :ep, value: @ep %>
+  </div>
+
+  <div>
+    <%= f.label :tf, "時間 ←長く感じた 短く感じた→"%>
+    <%= f.range_field :tf, in: 1..5, step: 1, id: "s1" %>
+    <span id="v1">3</span><br>
+  </div>
+
+  <div>
+    <%= f.label :con, "集中 ←できなかった できた→"%>
+    <%= f.range_field :con, in: 1..5, step: 1, id: "s2" %>
+    <span id="v2">3</span><br>
+  </div>
+
+  <div>
+    <%= f.label :mtv, "モチベ ←意欲なし 意欲あり→"%>
+    <%= f.range_field :mtv, in: 1..5, step: 1, id: "s3" %>
+    <span id="v3">3</span><br>
+  </div>
+
+  <div>
+    <%= f.submit "フィードバックを送信する" %>
+  </div>
+<% end %>
+
+<br>
+<br>
+
+<!-- スライダー用JavaScript -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const s1 = document.getElementById("s1");
+    const v1 = document.getElementById("v1");
+    const s2 = document.getElementById("s2");
+    const v2 = document.getElementById("v2");
+    const s3 = document.getElementById("s3");
+    const v3 = document.getElementById("v3");
+    // 初期値表示
+    v1.textContent = s1.value;
+    v2.textContent = s2.value;
+    v3.textContent = s3.value;
+
+    // スライダー変更時にリアルタイム更新
+    s1.addEventListener("input", function() {
+      v1.textContent = s1.value;
+    });
+
+    s2.addEventListener("input", function() {
+      v2.textContent = s2.value;
+    });
+
+    s3.addEventListener("input", function() {
+      v3.textContent = s3.value;
+    });
+  });
+</script>

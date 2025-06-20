@@ -21,6 +21,22 @@
       </a>
       </div>
       <p id="today"></p>
+
+      <% if @plan.present? %>
+      <p id="recommend-time">推奨作業時間 ...
+        <%= (@plan.time.to_d/60).to_i %>
+        時間
+        <%= @plan.time - 60*((@plan.time.to_d/60).to_i) %>
+        分
+        <br>
+        <br>
+        1タスクあたり ...
+        <%= ((@plan.time.to_d / @plan.num)/60).to_i %>
+        時間
+        <%= ((@plan.time.to_d / @plan.num) - 60*(((@plan.time.to_d / @plan.num)/60).to_i)).to_i %>
+        分
+      </p>
+      <% end %>
       <ul id="task-list">
         <% @tasks.each do |task| %>
         <li>
@@ -32,22 +48,36 @@
         <% end %>
       </ul>
     </div>
-    <div>
-      <%= form_with(model: @task, url: tops_path, method: :post, html:{ id: "task-form" }) do |f| %>
-          <%= f.text_field :content, placeholder: "やりたいことは？", required: true %>
-          <%= f.hidden_field :date, value: Date.today %>
-          <%= f.hidden_field :complete, value: false %>
-      <% end %>
+    <% if !@plan.present? %>
+      <div>
+        <%= form_with(model: @task, url: tops_path, method: :post, html:{ id: "task-form" }) do |f| %>
+            <%= f.text_field :content, placeholder: "やりたいことは？", required: true %>
+            <%= f.hidden_field :date, value: Date.today %>
+            <%= f.hidden_field :complete, value: false %>
+        <% end %>
 
-      <form id="next" action="/options/">
-        <!--おそらくこの上のactionは消す予定？-->
-        <button type="submit">感情・時間入力フォームへ進む</button>
-      </form>
-    </div>
+        <form id="next" action="/options/">
+          <button type="submit">感情・時間入力フォームへ進む</button>
+        </form>
+      </div>
+    <% end %>
+
+    <% if @plan.present? %>
+      <div>
+      
+        <form id="finish" action="/feedbacks/">
+              <button type="submit">タスクを終了し、フィードバックを入力する</button>
+        </form>
+      
+      </div>
+    <% end %>
+
   </div>
+  
 </body>
 </html>
 
 <!--タスクのリスト化はlist.js-->
 <!-- date.jsは日付の表示 -->
 <!-- move-prevent.jsはページ移動の防止(不要かも？) -->
+

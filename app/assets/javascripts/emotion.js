@@ -51,21 +51,23 @@ document.addEventListener("DOMContentLoaded", () => {
     //トークン取得
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(`/options/`, {
+    fetch(`/options`, {
       method: 'POST',
       headers: {
         'X-CSRF-Token': token,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        date: today,
-        emotion: displayEmotion.textContent,
-        maxtime: parseFloat(range.value)
+        "input":{
+          date: today,
+          emotion: displayEmotion.textContent,
+          maxtime: parseFloat(range.value)
+        }
       })
     }).then(response => {
       window.location.href = '/tops/';
     }).catch(error =>{
-      alert("入力エラー");
+      alert(error);
       return;
     })
   });

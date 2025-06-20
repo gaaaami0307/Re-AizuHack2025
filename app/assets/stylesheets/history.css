@@ -1,0 +1,41 @@
+html {
+  height: 100%;
+  width: 100%
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #3f3324, #7d6b58);
+  color: #fff;
+  overflow: hidden;
+}
+
+.history-container {
+  background-color: #271e0f;
+  box-shadow: 0 4px 10px rgba(0, 0, 0,0.6);
+  border-radius: 1rem;
+  height: auto;
+  /*height: auto;にしてるからhtml上に書き込めば勝手に調整されるはずなんだよねー*/
+  width: 90%;
+  max-width: 60rem;
+  margin: 1.0rem auto;
+  padding: 0.5rem 1.5rem;
+  position: relative;/*List親*/
+  z-index: 500;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+#discription {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}

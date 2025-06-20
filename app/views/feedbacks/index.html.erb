@@ -1,72 +1,49 @@
-<h1> フィードバック </h1>
+<!DOCTYPE html>
+<html lang="ja">
 
-<h2> 今日のタスクはどうでしたか？ </h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フィードバックフォーム</title>
+  <link rel="stylesheet" href="feedback-page.css">
+  <script src="feedback.js" defer></script>
+</head>
 
-<br>
-<br>
-<br>
-
-<%= form_with(model: @feed_back, url: feedbacks_path, method: :post) do |f| %>
-
-  <div>
-    <%= f.hidden_field :date, value: Date.today %>
+<body> 
+  <div class="container">
+    <h1>タスクのフィードバック</h1>
+      <div class="feedback-time">
+        <label for="feedback-text">時間の感じ方</label>
+        <div class="labels-text-time">
+        <span>長く感じた</span><span>短く感じた</span>
+        </div>
+        <input type="range" id="feedback-range-time" min="1" max="5" step="1" value="0">
+        <div class="time-labels-time">
+          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        </div>
+      </div>
+      <div class="feedback-consentrate">
+        <label for="feedback-text">集中度</label>
+        <div class=" labels-text-consentrate">
+          <span>集中できなかった</span><span>集中できた</span>
+        </div>
+        <input type="range" id="feedback-range-consentrate" min="1" max="5" step="1" value="0">
+        <div class="time-labels-consentrate">
+          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        </div>
+      </div>
+      <div class="feedback-motibation">
+      <label for="feedback-text">モチベーション</label>
+      <div class="labels-text-motivation">
+      <span>意欲なし</span><span>意欲あり</span>
+      </div>
+      <input type="range" id="feedback-range-motiveation" min="1" max="5" step="1" value="0">
+        <div class="time-labels-motivation">
+          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        </div>
+        <form>
+          <button type="submit" id="submit-feedback">フィードバックを送信</button>
+        </form>
+      </div>
   </div>
-
-  <div>
-    <%= f.hidden_field :ep, value: @ep %>
-  </div>
-
-  <div>
-    <%= f.label :tf, "時間 ←長く感じた 短く感じた→"%>
-    <%= f.range_field :tf, in: 1..5, step: 1, id: "s1" %>
-    <span id="v1">3</span><br>
-  </div>
-
-  <div>
-    <%= f.label :con, "集中 ←できなかった できた→"%>
-    <%= f.range_field :con, in: 1..5, step: 1, id: "s2" %>
-    <span id="v2">3</span><br>
-  </div>
-
-  <div>
-    <%= f.label :mtv, "モチベ ←意欲なし 意欲あり→"%>
-    <%= f.range_field :mtv, in: 1..5, step: 1, id: "s3" %>
-    <span id="v3">3</span><br>
-  </div>
-
-  <div>
-    <%= f.submit "フィードバックを送信する" %>
-  </div>
-<% end %>
-
-<br>
-<br>
-
-<!-- スライダー用JavaScript -->
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const s1 = document.getElementById("s1");
-    const v1 = document.getElementById("v1");
-    const s2 = document.getElementById("s2");
-    const v2 = document.getElementById("v2");
-    const s3 = document.getElementById("s3");
-    const v3 = document.getElementById("v3");
-    // 初期値表示
-    v1.textContent = s1.value;
-    v2.textContent = s2.value;
-    v3.textContent = s3.value;
-
-    // スライダー変更時にリアルタイム更新
-    s1.addEventListener("input", function() {
-      v1.textContent = s1.value;
-    });
-
-    s2.addEventListener("input", function() {
-      v2.textContent = s2.value;
-    });
-
-    s3.addEventListener("input", function() {
-      v3.textContent = s3.value;
-    });
-  });
-</script>
+</body>
