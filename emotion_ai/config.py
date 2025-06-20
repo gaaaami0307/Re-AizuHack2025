@@ -13,7 +13,7 @@ FINETRAIN_PATH = os.path.join(DATA_PATH, "fine_tuned")
 
 
 # 学習用データのpath
-TRAIN_DATA_PATH = os.path.join(DATA_PATH, "emotion_dataset_10000.xlsx")
+TRAIN_DATA_PATH = os.path.join(DATA_PATH, "emotion_dataset.xlsx")
 
 
 # ファインチューニングするモデルのlist
