@@ -1,94 +1,41 @@
-<h1> TOPページ </h1>
+<!DOCTYPE html>
+<html lang="ja">
 
-<% if @end == false %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List(仮)</title>
+  <%= stylesheet_link_tag "style.css", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "date", "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "list", "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "move-prevent", "data-turbo-track": "reload", defer: true %>
+</head>
 
-  <h2> タスクリスト </h2>
-
-  <ul>
-    <% @tasks.each do |task| %>
-      <li>
-        <%= task.content %> 
-        <% if !@plan.present? %>
-          <%= button_to "削除", top_path(task), method: :delete%>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-
-  <br>
-  <br>
-  <br>
-
-  <% if !@plan.present? %>
-
-    <%= form_with(model: @task, url: tops_path, method: :post) do |f| %>
-      <div>
-        <%= f.text_field :content %>
+<body>
+  <div class="List">
+    <div class="List-text">
+      <div class="for-clock">
+      <h2 id="Todo">今日の予定</h2>
+      <a href=""><!--後でがみさんがなんとかしてくれるはず-->
+        <%= image_tag "clock.png", id:"clock" %>
+      </a>
       </div>
+      <p id="today"></p>
+      <ul id="task-list"></ul>
+    </div>
+    <div>
+      <form id="task-form">
+        <input type="text" placeholder="やりたいことは？" required>
+      </form>
+      <form id="next" action="file:///C:/Users/hark_/Desktop/vscode/Re-AizuHack2025/emotion-page.html">
+        <!--おそらくこの上のactionは消す予定？-->
+        <button type="submit">感情・時間入力フォームへ進む</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
 
-      <div>
-        <%= f.hidden_field :date, value: Date.today %>
-      </div>
-
-      <div>
-        <%= f.hidden_field :complete, value: false %>
-      </div>
-
-      <div>
-        <%= f.submit "登録" %>
-      </div>
-    <% end %>
-    <br>
-    <%= button_to "次へ", options_path, method: :get %>
-    <br>
-
-  <% end %>
-
-  <% if @plan.present? %>
-    今日の勉強時間:
-    <%= (@plan.time.to_d/60).to_i %>
-    時間
-    <%= @plan.time - 60*((@plan.time.to_d/60).to_i) %>
-    分
-    <br>
-    <br>
-    1タスクあたり:
-    <%= ((@plan.time.to_d / @plan.num)/60).to_i %>
-    時間
-    <%= ((@plan.time.to_d / @plan.num) - 60*(((@plan.time.to_d / @plan.num)/60).to_i)).to_i %>
-    分
-    <br>
-    <br>
-    <%= button_to "終了", feedbacks_path, method: :get %>
-    <br>
-  <% end %>
-<% else %>
-本日のタスクは終了です。お疲れさまでした！
-<% end %>
-<br>
-Test:
-<br>
-today:
-<% if @plan.present? %>
-  ep: <%= @plan.ep %>
-  <br>
-  date: <%= @plan.date %>
-  <br>
-  num: <%= @plan.num %>
-  <br>
-  time: <%= @plan.time %>
-  <br>
-  positive: <%= @emotion.positive %>
-  <br>
-  neutral: <%= @emotion.neutral %>
-  <br>
-  negative: <%= @emotion.negative %>
-  <br>
-  Tuning T: <%= @tuning.T %>
-  <br>
-  Tuning M: <%= @tuning.M %>
-  <br>
-  Tuning C: <%= @tuning.C %>
-  <br>
-<% end %>
-<%= Date.today %>
+<!--タスクのリスト化はlist.js-->
+<!-- date.jsは日付の表示 -->
+<!-- move-prevent.jsはページ移動の防止(不要かも？) -->
