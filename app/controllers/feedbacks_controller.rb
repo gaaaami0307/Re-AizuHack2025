@@ -9,7 +9,7 @@ class FeedbacksController < ApplicationController
     @feed_back = FeedBack.new(feed_back_params)
 
     if !@feed_back.save
-      render :index, notice: "フィードバックの保存に失敗しました。"
+      render json: { error: "フィードバックの保存に失敗しました" }, status: :bad_request
       return
     end
 
@@ -20,7 +20,8 @@ class FeedbacksController < ApplicationController
     #チューニング
     tuning_parameter()
 
-    redirect_to tops_path
+    #redirect_to tops_path
+    head :no_content
   end
 
   private
@@ -38,10 +39,10 @@ class FeedbacksController < ApplicationController
     m = tuning.M
     c = tuning.C
 
-    #シグモイド関数でチューニング
-    t += sigmoid(feed_back.tf - 3) - 0.5
-    m += sigmoid(feed_back.con - 3) - 0.5
-    c += sigmoid(feed_back.mtv - 3) - 0.5
+    # tanh関数でチューニング
+    t += tanh(feed_back.tf - 3) / 2
+    m += tanh(feed_back.con - 3) / 2
+    c += tanh(feed_back.mtv - 3) / 2
 
     #0.1~0.9の範囲に抑えるように
     t = [t, 0.1].max
@@ -52,10 +53,19 @@ class FeedbacksController < ApplicationController
     c = [c, 0.9].min
 
     tuning.update(T:t, M:m, C:c)
+    puts "----------------------------------------"
+    puts "t:"
+    puts t
+    puts "m:"
+    puts m
+    puts "c:"
+    puts c
+    puts "----------------------------------------"
   end
 
-  def sigmoid(x)
-    1.0 / (1.0 + Math.exp(-x))
+  def tanh(x)
+    # 値域 [-1, 1]
+    (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x))
   end
 
 end
