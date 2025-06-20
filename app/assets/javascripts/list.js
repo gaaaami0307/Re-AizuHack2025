@@ -9,23 +9,61 @@ document.addEventListener("DOMContentLoaded", () => {
     form.after(taskList);
   }
 
+  //タスクにイベントを追加
+  document.querySelectorAll(".task-text").forEach((span) => {
+    span.addEventListener("click", () => {
+      span.classList.toggle("done");
+    });
+  });
+
+  //×ボタンにイベントを追加
+  
+  document.querySelectorAll(".delete-btn").forEach((deleteBtn) => {
+    deleteBtn.addEventListener("click", () => {
+      const taskid = deleteBtn.dataset.taskId;
+
+      //トークン取得
+      const token = document.querySelector('meta[name="csrf-token"]').content;
+    
+      fetch(`/tops/${taskid}`, {
+        method: 'DELETE',
+        headers: {
+          'X-CSRF-Token': token,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      }).then(response => {
+        window.location.href = '/tops/';
+      })
+
+    })
+  });
+  
+
+  //railsで代用
+  /*
   form.addEventListener("submit", (e) => {
     e.preventDefault();//フォームのデフォルト送信を防ぐ
 
     const task = input.value.trim();
     if (task === "") return;// 入力が空の場合は何もしない(空白でも同様に無視)
 
+    /*
     const li = document.createElement("li");
 
     const span = document.createElement("span"); // タスクテキスト用
+    
     span.textContent = task;
     span.classList.add("task-text");
+
 
     //  タスク完了時の切り替え
     span.addEventListener("click", () => {
       span.classList.toggle("done");
     });
 
+    */
+    /*
     // ✕ボタン
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "✕";
@@ -39,5 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     li.appendChild(deleteBtn);
     taskList.appendChild(li);
     input.value = "";
+
   });
+  */
 });

@@ -21,13 +21,25 @@
       </a>
       </div>
       <p id="today"></p>
-      <ul id="task-list"></ul>
+      <ul id="task-list">
+        <% @tasks.each do |task| %>
+        <li>
+          <span class="task-text"> <%= task.content %> </span>
+          <% if !@plan.present? %>
+            <button class="delete-btn", data-task-id= <%= task.id %> >✕</button>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
     </div>
     <div>
-      <form id="task-form">
-        <input type="text" placeholder="やりたいことは？" required>
-      </form>
-      <form id="next" action="file:///C:/Users/hark_/Desktop/vscode/Re-AizuHack2025/emotion-page.html">
+      <%= form_with(model: @task, url: tops_path, method: :post, html:{ id: "task-form" }) do |f| %>
+          <%= f.text_field :content, placeholder: "やりたいことは？", required: true %>
+          <%= f.hidden_field :date, value: Date.today %>
+          <%= f.hidden_field :complete, value: false %>
+      <% end %>
+
+      <form id="next" action="/options/">
         <!--おそらくこの上のactionは消す予定？-->
         <button type="submit">感情・時間入力フォームへ進む</button>
       </form>

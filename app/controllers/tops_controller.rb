@@ -31,7 +31,8 @@ class TopsController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to tops_path
+    
+    head :no_content
   end
 
   private
