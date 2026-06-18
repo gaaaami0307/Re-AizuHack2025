@@ -31,3 +31,6 @@ example: "develop/gaaaami0307"
 ・プレゼンで使った動画は次になります。
 
 https://youtu.be/hDLt5NWm2gc
+
+・今回のハッカソンで作成したドキュメントです。
+https://acrobat.adobe.com/id/urn:aaid:sc:AP:3c932d15-a956-40e6-9d15-8dd0c527a6f5
